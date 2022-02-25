@@ -117,3 +117,40 @@ ReactDOM.render(
 );
 
 ```
+
+# CONTEXT BASICS
+
+1. create a provider
+```javascript
+
+export const DataContext = React.createContext()
+
+const DataProvider = (props)=>{
+    const [users, setUsers] = useState([])
+    const [demoState, setDemoState] = useState('hi I am demoState from the data provider ')
+
+
+    // create an object that will be 'global state'
+    const dataProviderState = {users:users, demoState:demoState, x:1}
+    // return the provider which will wrap my all app
+    return (
+        <DataContext.Provider value={dataProviderState}>
+           {props.children}
+        </DataContext.Provider>
+    )
+}
+
+export default DataProvider
+```
+
+2. wrap our app in created provide
+```javascript
+ReactDOM.render(
+  <DataProvider>
+    <BrowserRouter>
+      ... WHAT EVER APP HERE
+    </BrowserRouter>
+  </DataProvider>,
+  document.getElementById("root")
+);
+

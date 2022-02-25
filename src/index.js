@@ -6,16 +6,19 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Users from "./pages/Users";
 import About from "./pages/About";
+import DataProvider from "./providers/DataProvider";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<App />}>
-        <Route path="/users" element={<Users />} />
-        <Route path="/about" element={<About />} />
-      </Route>
-    </Routes>
-  </BrowserRouter>,
+  <DataProvider>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route path="/users" element={<Users />} />
+          <Route path="/about" element={<About />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </DataProvider>,
   document.getElementById("root")
 );
 

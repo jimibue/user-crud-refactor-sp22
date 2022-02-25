@@ -14,6 +14,7 @@ function App() {
           <Link to='/users'>Users</Link> - {' '}
           <Link to='/about'>About</Link>
         </nav>
+        <p>Outlet component here</p>
         <Outlet />
     </div>
   );
