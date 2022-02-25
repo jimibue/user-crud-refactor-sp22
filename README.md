@@ -1,70 +1,119 @@
-# Getting Started with Create React App
+#  Basic setup FOCUS ON REACT ROUTER / REACT CONTEXT / CRUD
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 1. setup react project/github
+> any notes about this step you want
 
-## Available Scripts
+```
+$ yarn create react-app <project-name>
+// comment here
+$ cd  <project-name>
+$ git remote add origin ssh-link
+$ git add .
+$ git commit -m 'init'
+$ git push origin master
+$ yarn start
+``` 
 
-In the project directory, you can run:
+### 2. Add any 3rd libraries you know you are going to be using
+> These will change, but some common ones, axios, react-router
 
-### `yarn start`
+```
+$ yarn add axios
+$ yarn add react-router-dom@6
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# BASIC REACT ROUTER SETUP
+1. make sure  react-router-dom@6 is installed
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```
+$ yarn add react-router-dom@6
+```
 
-### `yarn test`
+2. Setup BrowserRouter in update index.js
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+import { BrowserRouter} from 'react-router-dom'
 
-### `yarn build`
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById('root')
+);
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Create your pages(components)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+``` javascript
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+const Users = ()=>{
+    return (
+        <div>
+            <h1>Users Page</h1>
+        </div>
+    )
+}
 
-### `yarn eject`
+export default Users
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+const About = ()=>{
+    return (
+        <div>
+            <h1>About Page</h1>
+        </div>
+    )
+}
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+export default About
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+4. basic App.js setup demo
+```javascript
+import logo from './logo.svg';
+import './App.css';
+import { Link, Outlet } from 'react-router-dom';
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+function App() {
+  return (
+    <div>
+      <h1>Users App</h1>
+      <nav
+        style={{
+          border:'2px solid green'
+        }}
+        >
+          <Link to='/users'>Users</Link> - {' '}
+          <Link to='/about'>About</Link>
+        </nav>
+        <Outlet />
+    </div>
+  );
+}
 
-## Learn More
+export default App;
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+index.js
+```javascript
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Users from "./pages/Users";
+import About from "./pages/About";
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ReactDOM.render(
+  <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<App />}>
+        <Route path="/users" element={<Users />} />
+        <Route path="/about" element={<About />} />
+      </Route>
+    </Routes>
+  </BrowserRouter>,
+  document.getElementById("root")
+);
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
