@@ -17,7 +17,7 @@ const DataProvider = (props) => {
   const getUsers = async () => {
     // this function will pause here and wait
     try {
-      let res = await axios.get("https://reqres.in/ap/users?delay=1");
+      let res = await axios.get("https://reqres.in/api/users?delay=1");
       setUsers(res.data.data);
     } catch (err) {
       setError("error occured");

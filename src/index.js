@@ -7,6 +7,12 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Users from "./pages/Users";
 import About from "./pages/About";
 import DataProvider from "./providers/DataProvider";
+import NewUser  from "./pages/NewUser";
+import User from "./pages/User";
+
+const NotFound = ()=>{
+  return <p>path not found</p>
+}
 
 ReactDOM.render(
   <DataProvider>
@@ -14,7 +20,10 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="/users" element={<Users />} />
+          <Route path="/users/:id" element={<User />} />
+          <Route path="/new_user" element={<NewUser />} />
           <Route path="/about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

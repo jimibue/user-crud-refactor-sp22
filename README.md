@@ -154,3 +154,27 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
+3. use it (useContext hook along with context from our provider) 
+example
+```javascript
+import { useContext } from "react"
+import { DataContext } from "../providers/DataProvider"
+const About = ()=>{
+    const {demoState, setDemoState} = useContext(DataContext)
+    return (
+        <div>
+            <h1>About Page</h1>
+            <button onClick={()=>setDemoState('changed in about')}>change</button>
+            <p>demoState: {demoState}</p>
+        </div>
+    )
+}
+
+export default About
+```
+
+CRUD
+1. create the state in your provider
+2. do the CRUD in your provider (this is incomplete but gets us close)
+3. UI STUFF - forms, click events, render things to look nice
+

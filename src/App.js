@@ -12,7 +12,8 @@ function App() {
         }}
         >
           <Link to='/users'>Users</Link> - {' '}
-          <Link to='/about'>About</Link>
+          <Link to='/about'>About</Link> - {' '}
+          <Link to='/new_user'>New User</Link>
         </nav>
         <p>Outlet component here</p>
         <Outlet />
